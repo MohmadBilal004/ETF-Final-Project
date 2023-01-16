@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="Assets/Home.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+        <title>Main Page</title>
+    </head>
+    <body>
+        <header>
+            <div class = "container">
+                <div class = "logo">
+                    <img src = "Assets/download.jpg">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="http://localhost/ETF%20Final/Home.html">Main</a></li>
+                        <li><a href="http://localhost/ETF%20Final/Index2.html">Register Student</a></li>
+                        <li><a href="http://localhost/ETF%20Final/Search.html">Search Student</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class = "content">
+            <div class="container">
+                <br><br><br><br><br><br><br><br><br><br>
+                <table class="table table-bordered table-striped table-hover" id = "student_table">
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>Date Of Birth</th>
+                            <th>Center</th>
+                        </tr>       
+                </table>
+            </div>
+        </div>
+    </body>
+    <script src = "Assets/scripts/jquery-3.6.1.js"></script>
+    <script src = "Assets/scripts/navigation.js"></script>
+</html>
+<script Content-Type="text/javascript">
+    $(document).ready(function(){
+        $.getJSON("data.json", function(data) {
+            var items = [];
+            $.each(data,function(key, value){
+                items +=  '<tr>';
+                items +=  '<td>'+value.id+'</td>';
+                items +=  '<td>'+value.first_name+'</td>';
+                items +=  '<td>'+value.last_name+'</td>';
+                items +=  '<td>'+value.email+'</td>';
+                items +=  '<td>'+value.gender+'</td>';
+                items +=  '<td>'+value.Dateof_Birth+ '</td>';
+                items +=  '<td>'+value.center+'</td>';
+                items +=  '</tr>';
+            });
+            $('#student_table').append(items);
+        });
+    }); 
+    </script>
